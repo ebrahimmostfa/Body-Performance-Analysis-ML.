@@ -1,96 +1,92 @@
-# Body-Performance-Analysis-ML-Project
-End-to-end ML pipeline on 13,393 real fitness assessments. Tackles 4-class performance tier classification &amp; broad jump regression using KNN, Decision Tree, SVM (Linear/RBF), and MLP. Includes domain-informed preprocessing, stratified K-Fold CV, and full model comparison across 3 split ratios.
-📌 Overview
-A complete, end-to-end machine learning pipeline applied to the Body Performance Dataset — a collection of real fitness assessments spanning age groups and genders. The project tackles two complementary predictive tasks:
-TaskTypeTargetMetricPerformance Tier PredictionClassificationClass A / B / C / DMacro F1Broad Jump Distance PredictionRegressionbroad jump_cmR² Score
+# 🏨 Hotel Booking Cancellation Prediction
 
-📁 Project Structure
-body-performance-ml/
-│
-├── Machine_Learning_Project.ipynb   # Main notebook (full pipeline)
-├── bodyPerformance.csv              # Dataset (add manually)
-│
-├── INSIGHTS.md                      # Key findings & analytical insights
-├── MODEL_COMPARISON.md              # Full model comparison tables & results
-│
-└── README.md
+### 🚀 From 119,000 Raw Records to a 92.7% Accurate Prediction System
 
-📊 Dataset
-PropertyValueSourceKaggle — Body Performance DataRecords13,393Features11 (age, gender, height, weight, body fat %, blood pressure, grip force, sit-ups, broad jump)Target (Classification)class — A, B, C, DTarget (Regression)broad jump_cm
+This project delivers a complete **end-to-end Data Science & Business Intelligence solution** designed to tackle one of the hospitality industry's biggest challenges:
+👉 understanding and reducing booking cancellations.
 
-⚙️ Pipeline
-1 — Data Preprocessing
+By transforming a raw dataset of **119,000+ records and 30+ features** into actionable insights, this project provides a powerful framework for **data-driven decision-making and revenue protection**.
 
-Type verification — stripped column whitespace, validated dtypes
-Duplicate removal — prevented sample memorisation
-Domain-informed filtering — removed physiologically impossible blood pressure values (diastolic ≥ systolic, diastolic ≤ 40, systolic ≤ 70)
-Rule-based outlier removal — medically anchored ranges for age, weight, height, body fat %
-IQR Winsorization — clipped remaining extremes to fence values (floor at 0 for non-negative columns) — preserves dataset size
-Encoding & Scaling inside Pipeline — zero data leakage guaranteed
+---
 
-2 — Modelling Strategy
-Classification Models:
-ModelVariantsK-Nearest Neighboursk = 3, 5, 7Decision Treemax_depth = 3, 5, NoneSupport Vector MachineLinear kernel, RBF kernelNeural Network (MLP)64 → 32, ReLU, 500 iterations
-Regression Models:
-ModelVariantsLinear RegressionOLS baselineKNN Regressork = 3, 5Decision Tree Regressormax_depth = 3, 5Support Vector RegressorLinear, RBFNeural Network Regressor64 → 32, ReLU
-3 — Evaluation Protocol
+## 🔬 Technical Methodology & Predictive Modeling
 
-Three train/test splits: 80:20, 70:30, 50:50
-Stratified K-Fold (5-fold) for classification
-K-Fold (5-fold) for regression
-Final ranking: Macro F1 (classification) · R² (regression)
+The workflow began with rigorous **data cleaning & preprocessing**, including:
 
+* Handling missing values
+* Removing duplicates
+* Fixing outliers
 
-🏆 Results Summary
-Classification
-RankModelCV F1 Macro🥇SVM (RBF)Best🥈Neural Network (MLP)~Equal🥉KNN (k=5)CompetitiveDecision Tree (unconstrained)OverfitSVM (Linear)Below RBF
-Regression
-RankModelCV R²🥇Neural Network RegressorBest🥈SVR (RBF)~Equal🥉Decision Tree (depth=5)ModerateLinear RegressionBelow non-linear
+⚠️ A critical step was detecting and removing **data leakage** (e.g., `reservation_status`), which initially caused **100% unrealistic accuracy**.
 
-Full numeric results → MODEL_COMPARISON.md
+✅ After fixing this issue, the final model achieved:
+🎯 **92.7% accuracy (realistic & reliable)**
 
+### 🧠 Key Techniques:
 
-💡 Key Insights
+* Feature Engineering (behavioral + seasonal features)
+* Exploratory Data Analysis (EDA)
+* Classification Models:
 
-Full analysis → INSIGHTS.md
+  * Logistic Regression
+  * Random Forest
 
+---
 
-Non-linear models consistently win — both tasks confirm that performance data contains complex interaction effects between age, grip force, and flexibility that linear models cannot capture
-Grip force ↔ broad jump correlation ≈ 0.73 (strongest predictor)
-Age ↔ broad jump correlation ≈ −0.50 (performance declines with age)
-SVM Linear vs RBF gap proves class boundaries are not linearly separable in the original 11-dimensional feature space
+## 📊 Key Insights
 
+* ⏳ **Lead Time** is the strongest predictor
+* 🔁 Previous cancellations → higher future risk
+* 💳 Deposit type affects cancellation behavior
+* 🌍 Market segments influence patterns
+* 🤝 Loyal customers cancel far less
 
-🚀 Getting Started
-Prerequisites
-bashpip install pandas numpy scikit-learn matplotlib seaborn jupyter
-Run the Notebook
-bashgit clone https://github.com/YOUR_USERNAME/body-performance-ml.git
-cd body-performance-ml
-jupyter notebook Machine_Learning_Project.ipynb
+---
 
-⚠️ Place bodyPerformance.csv in the root directory before running, or update DATA_PATH in cell 1.
+## 🏗️ Database Architecture & Business Logic
 
+This project includes a fully designed **Relational Database System (3NF)**:
 
-⚠️ Known Limitations
+* 🧩 13 interconnected tables
+* 🔗 Strong PK/FK relationships
+* 🔐 Data integrity & scalability
 
-Best-model final evaluation is done on the full training set (optimistically biased — no dedicated hold-out test set)
-Hyperparameters were fixed at sensible defaults, not tuned via grid/random search
-MLP convergence was not monitored (no validation loss curve or early stopping)
+### ⚙️ Business Logic:
 
+* ✔️ Booking Validation
+* 📜 Audit Tracking (full history)
+* ⏱️ Real-time Room Availability
 
-🔮 Future Work
+---
 
- Hyperparameter tuning with RandomizedSearchCV (nested CV)
- Add Random Forest & Gradient Boosting (XGBoost, LightGBM)
- Feature engineering: BMI, strength-to-weight ratio, age-normalised scores
- Proper held-out test set
- SHAP explainability layer for individual predictions
- Class-specific threshold optimisation via Precision-Recall curves
+## 📈 Business Intelligence & Impact
 
+Using tools like **Power BI & Orange**, the project delivers:
 
-📄 Report
-A full written report (ML_Report_Body_Performance.pdf) is included, covering methodology, results, critical analysis, and future improvements.
+* 💰 Revenue optimization strategies
+* 👥 Customer behavior insights
+* 📊 Data-driven decision support
 
-👤 Author
-Ahmed Mahmoud Khalifa · March 2026
+---
+
+## 🛠️ Tech Stack
+
+**📊 Data Science:**
+Python (Pandas, NumPy, Scikit-learn), Orange
+
+**🗄️ Database:**
+SQL (Relational Design, 3NF)
+
+**📈 Visualization & BI:**
+Power BI
+
+---
+
+## 💡 Final Value
+
+This project bridges the gap between **raw data and real business value**, delivering a powerful system that supports:
+
+* 📊 Smarter decisions
+* 💸 Revenue protection
+* 🚀 Operational efficiency
+* 📈 Long-term growth

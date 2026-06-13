@@ -1,0 +1,33 @@
+Hotel-Cancellation-Analysis/
+│
+├── 📁 data/
+│   ├── raw/
+│   ├── cleaned/
+│
+├── 📁 notebooks/
+│   ├── 01_data_cleaning.ipynb
+│   ├── 02_eda.ipynb
+│   ├── 03_feature_engineering.ipynb
+│   ├── 04_modeling.ipynb
+│
+├── 📁 dashboards/
+│   ├── powerbi_file.pbix
+│
+├── 📁 images/
+│   ├── dashboard_overview.png
+│   ├── dashboard_behavior.png
+│   ├── dashboard_financial.png
+│   ├── dashboard_ml.png
+│
+├── 📁 sql/
+│   ├── schema.sql
+│   ├── queries.sql
+│   ├── procedures.sql
+│
+├── 📁 reports/
+│   ├── EDA_Report.pdf
+│   ├── Executive_Presentation.pdf
+│
+├── 📄 README.md
+├── 📄 requirements.txt
+├── 📄 project_summary.md
